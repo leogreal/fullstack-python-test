@@ -49,7 +49,7 @@ The front-end must be separated from the Web API Solution and you are free to ch
 - Make your project running with the minimum needed interactions will be considered important in the analysis of your performance.
 - Make it as easy as possible
 - The ideal scenario will be to clone your repository and execute it through a single command such as `./INSTALL` or `./RUN`
-- Considering this is a C# test, the deployment can be supported only at Windows SO running machines or virtual machines but it will be considered a plus if you can manage to make it work at linux and/or mac osx OS's as well
+- Considering this is a Python test, the deployment can be supported only at Windows SO running machines or virtual machines but it will be considered a plus if you can manage to make it work at linux and/or mac osx OS's as well
 
 ## Documentation Requisites
 - It can be done in portuguese although being in english will also be considered a plus
