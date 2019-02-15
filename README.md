@@ -29,7 +29,7 @@ The front-end must be separated from the Web API Solution and you are free to ch
 >  * `/orders/{orderId}` - *GET* - returns details from a specific order. Details are the total value of the order and a list of products with their individual quantity and the price.
 >  * `/orders/search` - *GET or POST* - return orders filtered by a interval of price and interval of creation date
 
-## Frontend Technical Requisites (optional)
+## Frontend Technical Requisites
 The front-end must be separated from the API and you are free to choose the tools used in the implementation
 > 1. Account
 >  * `Register` - The user must be able to register account
@@ -65,8 +65,7 @@ The front-end must be separated from the API and you are free to choose the tool
 
 
 Feel free to ask us any question.
-*Nicholas Drabowski* - **nicholas@portaltelemedicina.com.br**
-*Luiz Roberto Lethang Rodolpho* - **luiz@portaltelemedicina.com.br**
+*Nicholas Drabowski* - **nicholas@portaltelemedicina.com.br** or *Luiz Roberto Lethang Rodolpho* - **luiz@portaltelemedicina.com.br**
 
 You have 5 days counting from tomorrow to finish and deliver us the address of your github repository. Please, let us know if you need more time.
 
