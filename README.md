@@ -1,6 +1,6 @@
 # Full-stack Test for candidates
 
-We expect the candidate create a Web API and a Web Client to consume and display API data.
+We expect the candidate create a Web API based on the following requisites.
 
 ## Web API Technical Requisites
 
@@ -11,8 +11,28 @@ The usage of the following are demanded
 The front-end must be separated from the Web API Solution and you are free to choose the tools used in the implementation
 - Your HTML and CSS will be checked within the following implementation:
 
+
+## WEB API Main Tasks
+> 1. Create the following unauthenticated service endpoints
+>  * `/signin` - *POST* - receiving an user name and a password
+>  * `/signup` - *POST* - receiving an user full display name, an user name, a password and e-mail address. Upon save time, add the current date and time to the database. An unique id must be created and used throughout the `/order/` POST endpoint described later in this document
+> 2. Create the following authenticated service endpoints
+> 2.1. Products
+>  * `/products` - *POST* - insert a new product to the product table with the following fields: id, name, description, price, creation date
+>  * `/products/{id}` - *POST* - delete a product sending a product id
+>  * `/products/{id}` - *PUT* - update all passed fields in its appropriate record
+> 2.2. Orders
+>  * `/orders` - *POST* - inserts an order receiving an user id and a list of products id with the current price and quantity
+>  * `/orders` - *GET* - returns all orders from the logged user. The search must accept optional filters by price range and date interval of creation date
+>  * `/orders/{orderId}` - *GET* - returns details from a specific order. Details are the total value of the order and a list of products with their individual quantity and the price
+>  * `Search` - The user must be able to filter orders by a interval of price and interval of creation date
+>  * `List` - The user must be able to see a list of orders
+>  * `Details` - The user must be able to see order details (product name, quantity, price)
+
+## Frontend Technical Requisites (optional)
+The front-end must be separated from the API and you are free to choose the tools used in the implementation
 > 1. Account
->  * `Register` - The user must be able to register account 
+>  * `Register` - The user must be able to register account
 >  * `Login` - The user must be able to log in into the application
 > 2. Products
 >  * `Create/Update/Delete` - The user must be able to create, update and delete products
@@ -20,20 +40,6 @@ The front-end must be separated from the Web API Solution and you are free to ch
 >  * `Search` - The user must be able to filter orders by a interval of price and interval of creation date
 >  * `List` - The user must be able to see a list of orders
 >  * `Details` - The user must be able to see order details (product name, quantity, price)
-
-## WEB API Main Tasks
-
-> 1. Create the following unauthenticated service endpoints
->  * `/signin` - *POST* - receiving an user name and a password
->  * `/signup` - *POST* - receiving an user full display name, an user name, a password and e-mail address. Upon save time, add the current date and time to the database. An unique id must be created and used throughout the `/order/` POST endpoint described later in this document
-
-> 2. Create the following authenticated service endpoints
->  * `/products` - *POST* - insert a new product to the product table with the following fields: id, name, description, price, creation date
->  * `/products/{id}` - *POST* - delete a product sending a product id
->  * `/products/{id}` - *PUT* - update all passed fields in its appropriate record
->  * `/orders` - *POST* - inserts an order receiving an user id and a list of products id with the current price and quantity
->  * `/orders` - *GET* - returns all orders from the logged user. The search must accept optional filters by price range and date interval of creation date
->  * `/orders/{orderId}` - *GET* - returns details from a specific order. Details are the total value of the order and a list of products with their individual quantity and the price
 
 ## Services Requisites
 - All endpoints must have automated tests that will prove the requisites are implemented
@@ -66,8 +72,9 @@ The front-end must be separated from the Web API Solution and you are free to ch
 
 Feel free to ask us any question.
 *Nicholas Drabowski* - **nicholas@portaltelemedicina.com.br**
+*Luiz Roberto Lethang Rodolpho* - **luiz@portaltelemedicina.com.br**
 
-You have 7 days counting from tomorrow to finish and deliver us the address of your github repository. Please, let us know if you need more time.
+You have 5 days counting from tomorrow to finish and deliver us the address of your github repository. Please, let us know if you need more time.
 
 
 
