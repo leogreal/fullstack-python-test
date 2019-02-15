@@ -5,27 +5,29 @@ We expect the candidate create a Web API based on the following requisites.
 ## Web API Technical Requisites
 
 The usage of the following are demanded
-- Language Python
+- Language Python 3
+
+The usage of the following are considered a plus
+- Django
+- Flask or Django REST Framework
+- Docker
 
 ## Web Client Technical Requisites
 The front-end must be separated from the Web API Solution and you are free to choose the tools used in the implementation
 - Your HTML and CSS will be checked within the following implementation:
 
-
 ## WEB API Main Tasks
 > 1. Create the following unauthenticated service endpoints
 >  * `/signin` - *POST* - receiving an user name and a password
->  * `/signup` - *POST* - receiving an user full display name, an user name, a password and e-mail address. Upon save time, add the current date and time to the database. An unique id must be created and used throughout the `/order/` POST endpoint described later in this document
+>  * `/signup` - *POST* - receiving an user full display name, an user name, a password and e-mail address. Upon save time, add the current date and time to the database.
 > 2. Create the following authenticated service endpoints
 >  * `/products` - *POST* - insert a new product to the product table with the following fields: id, name, description, price, creation date
->  * `/products/{id}` - *POST* - delete a product sending a product id
+>  * `/products/{id}` - *DELETE* - delete a product sending a product id
 >  * `/products/{id}` - *PUT* - update all passed fields in its appropriate record
 >  * `/orders` - *POST* - inserts an order receiving an user id and a list of products id with the current price and quantity
 >  * `/orders` - *GET* - returns all orders from the logged user. The search must accept optional filters by price range and date interval of creation date
->  * `/orders/{orderId}` - *GET* - returns details from a specific order. Details are the total value of the order and a list of products with their individual quantity and the price
->  * `Search` - The user must be able to filter orders by a interval of price and interval of creation date
->  * `List` - The user must be able to see a list of orders
->  * `Details` - The user must be able to see order details (product name, quantity, price)
+>  * `/orders/{orderId}` - *GET* - returns details from a specific order. Details are the total value of the order and a list of products with their individual quantity and the price.
+>  * `/orders/search` - *GET or POST* - return orders filtered by a interval of price and interval of creation date
 
 ## Frontend Technical Requisites (optional)
 The front-end must be separated from the API and you are free to choose the tools used in the implementation
@@ -43,17 +45,11 @@ The front-end must be separated from the API and you are free to choose the tool
 - All endpoints must have automated tests that will prove the requisites are implemented
 - Use as many design patterns and best practices as you see fit
 - Use async methods anywhere you find it is needed
-- ORM is open to your choice
-
-## Database Requisites
-- You are the responsible the create the database structure as best as you can think of. Conciseness, coherence and best practices are going to be considered
-- Dockerizing your database is not required but will be considered a PLUS
 
 ## Running and Executing Requisites
 - Make your project running with the minimum needed interactions will be considered important in the analysis of your performance.
 - Make it as easy as possible
 - The ideal scenario will be to clone your repository and execute it through a single command such as `./INSTALL` or `./RUN`
-- Considering this is a Python test, the deployment can be supported only at Windows SO running machines or virtual machines but it will be considered a plus if you can manage to make it work at linux and/or mac osx OS's as well
 
 ## Documentation Requisites
 - It can be done in portuguese although being in english will also be considered a plus
@@ -63,7 +59,7 @@ The front-end must be separated from the API and you are free to choose the tool
 ## Last Requisites
 - You can use your Github, GitLab or BitBucket to deliver this test
 - You can fork from here to get started
-- Try to keep your commits to a reasonable atomic capacity
+- Try to keep your commits to a reasonable atomic capacity (We want to be able to understand your line of thinking. Do not be afraid to make really small commits.)
 - Use as much best practices you see fit to address the commits and/or branch naming
 - Publishing the API and the client in the cloud will be considered a PLUS
 
