@@ -58,10 +58,10 @@ class ProductApiTest(APITestCase):
     def test_create_product(self):
         """Ensure we can create a new product object."""
         url = r('core:product-list')
-        data = {'name': 'Bandana',
-                'description': 'Printed Bandana',
-                'price': 18}
-        response = self.client.post(url, data, format='json')
+        data_to_create = {'name': 'Bandana',
+                          'description': 'Printed Bandana',
+                          'price': '18.55'}
+        response = self.client.post(url, data_to_create, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
-        for key in data:
-            self.assertEqual(response.data[key], data[key])
+        for key in data_to_create:
+            self.assertEqual(data_to_create[key], response.data[key])
