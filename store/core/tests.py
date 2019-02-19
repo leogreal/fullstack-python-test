@@ -65,3 +65,11 @@ class ProductApiTest(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         for key in data_to_create:
             self.assertEqual(data_to_create[key], response.data[key])
+
+    def test_retrieve_product(self):
+        """Ensure we can retrieve a product object by id."""
+        pk = 1
+        url = r('core:product-detail', pk=pk)
+        response = self.client.get(url, format='json')
+        self.assertEqual(response.data['id'], pk)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
