@@ -43,17 +43,18 @@ class ProductApiTest(APITestCase):
             price=30,)
 
         self.client = APIClient()
-        self.resp = self.client.get(r('core:product-list'), format='json')
 
     def test_get(self):
         """Get /products/ must return status 200"""
-        self.assertEqual(self.resp.status_code, status.HTTP_200_OK)
+        response = self.client.get(r('core:product-list'), format='json')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     def test_get_all_products(self):
         """Test GET all products"""
         products = Product.objects.all()
         serializer = ProductSerializer(products, many=True)
-        self.assertEqual(self.resp.data, serializer.data)
+        response = self.client.get(r('core:product-list'), format='json')
+        self.assertEqual(response.data, serializer.data)
 
     def test_create_product(self):
         """Ensure we can create a new product object."""
@@ -69,9 +70,11 @@ class ProductApiTest(APITestCase):
     def test_retrieve_product(self):
         """Ensure we can retrieve a product object by id."""
         pk = 1
+        product = Product.objects.get(id=pk)
+        serializer = ProductSerializer(product, many=False)
         url = r('core:product-detail', pk=pk)
         response = self.client.get(url, format='json')
-        self.assertEqual(response.data['id'], pk)
+        self.assertEqual(response.data, serializer.data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     def test_update_product(self):
