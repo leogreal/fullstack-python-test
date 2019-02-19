@@ -72,6 +72,7 @@ class ProductApiTest(APITestCase):
         pk = 1
         product = Product.objects.get(id=pk)
         serializer = ProductSerializer(product, many=False)
+
         url = r('core:product-detail', pk=pk)
         response = self.client.get(url, format='json')
         self.assertEqual(response.data, serializer.data)
@@ -80,15 +81,17 @@ class ProductApiTest(APITestCase):
     def test_update_product(self):
         """Ensure we can update a product object by id."""
         pk = 1
-        description = 'Bandana very stylish'
-
         url = r('core:product-detail', pk=pk)
         response = self.client.get(url, format='json')
 
-        url = r('core:product-detail', pk=pk)
         data_to_update = response.data
-        data_to_update['description'] = description
+        data_to_update['description'] = 'Bandana very stylish'
 
+        url = r('core:product-detail', pk=pk)
         response = self.client.put(url, data_to_update, format='json')
-        self.assertEqual(response.data['description'], description)
+
+        product = Product.objects.get(id=pk)
+        serializer = ProductSerializer(product, many=False)
+
+        self.assertEqual(response.data, serializer.data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
