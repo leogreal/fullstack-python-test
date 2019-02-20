@@ -20,3 +20,6 @@ class ProfileModelTest(TestCase):
     def test_creation_date(self):
         """Profile must have an auto creation_date attr."""
         self.assertIsInstance(self.obj.creation_date, datetime)
+
+    def test_str(self):
+        self.assertEqual('Leonardo', str(self.obj))
