@@ -1,3 +1,17 @@
 from django.test import TestCase
+from store.authentication.models import Profile
 
-# Create your tests here.
+
+class ProfileModelTest(TestCase):
+
+    def setUp(self):
+        self.obj = Profile(
+            username='leonardo',
+            name='Leonardo Gregório',
+            email='leogreal@gmail.com',
+            password='secret',)
+        self.obj.save()
+
+    def test_create(self):
+        """Ensure we can create a new profile"""
+        self.assertTrue(Profile.objects.exists())

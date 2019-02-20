@@ -8,12 +8,12 @@ from rest_framework.permissions import IsAuthenticated
 class ProductList(generics.ListCreateAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
-    authentication_classes = [SessionAuthentication]
-    permission_classes = (IsAuthenticated, )
+    # authentication_classes = [SessionAuthentication]
+    # permission_classes = (IsAuthenticated, )
 
 
 class ProductDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
-    authentication_classes = [SessionAuthentication]
-    permission_classes = (IsAuthenticated, )
+    # authentication_classes = [SessionAuthentication]
+    # permission_classes = (IsAuthenticated, )
