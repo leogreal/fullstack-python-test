@@ -1,5 +1,11 @@
 from datetime import datetime
 from django.test import TestCase
+from django.shortcuts import resolve_url as r
+
+from rest_framework import status
+from rest_framework.test import APIClient
+from rest_framework.test import APITestCase
+
 from store.authentication.models import Profile
 
 
@@ -23,3 +29,16 @@ class ProfileModelTest(TestCase):
 
     def test_str(self):
         self.assertEqual('Leonardo', str(self.obj))
+
+
+class SignupApiGetTest(APITestCase):
+
+    def setUp(self):
+        self.client = APIClient()
+
+    def test_get(self):
+        """Get /signup/ must return status 405"""
+        response = self.client.get(
+            r('authentication:signup'), format='json')
+        self.assertEqual(response.status_code,
+                         status.HTTP_405_METHOD_NOT_ALLOWED)
