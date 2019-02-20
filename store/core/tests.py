@@ -129,3 +129,21 @@ class ProductApiUpdateTest(APITestCase):
             r('core:product-detail', pk=self.pk), data_to_update, format='json')
 
         self.assertEqual(response.data, data_to_update)
+
+
+class ProductApiDeleteTest(APITestCase):
+    def setUp(self):
+        self.pk = 1
+        self.product = Product.objects.create(
+            name='Running Shoes',
+            description='Soft and light running shoes.',
+            price=100,)
+
+        self.client = APIClient()
+
+    def test_delete_product(self):
+        """Ensure we can delete a product object by id."""
+        response = self.client.delete(
+            r('core:product-detail', pk=self.pk), format='json')
+
+        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
