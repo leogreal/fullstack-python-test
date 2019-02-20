@@ -1,3 +1,4 @@
+from datetime import datetime
 from django.test import TestCase
 from store.authentication.models import Profile
 
@@ -15,3 +16,7 @@ class ProfileModelTest(TestCase):
     def test_create(self):
         """Ensure we can create a new profile"""
         self.assertTrue(Profile.objects.exists())
+
+    def test_creation_date(self):
+        """Profile must have an auto creation_date attr."""
+        self.assertIsInstance(self.obj.creation_date, datetime)
