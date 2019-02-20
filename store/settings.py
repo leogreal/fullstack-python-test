@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'test_without_migrations',
     'rest_framework',
+    'store.authentication',
     'store.products',
 ]
 
@@ -52,6 +53,12 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+AUTHENTICATION_BACKENDS = [
+    'store.authentication.backend.AuthBackend'
+]
+
+AUTH_USER_MODEL = 'authentication.Profile'
 
 ROOT_URLCONF = 'store.urls'
 
