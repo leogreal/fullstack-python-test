@@ -6,8 +6,8 @@ from rest_framework import status
 from rest_framework.test import APIClient
 from rest_framework.test import APITestCase
 
-from store.core.models import Product
-from store.core.serializers import ProductSerializer
+from store.products.models import Product
+from store.products.serializers import ProductSerializer
 
 
 class ProductModelTest(TestCase):
@@ -48,14 +48,14 @@ class ProductApiGetTest(APITestCase):
 
     def test_get(self):
         """Get /products/ must return status 200"""
-        response = self.client.get(r('core:product-list'), format='json')
+        response = self.client.get(r('products:product-list'), format='json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     def test_get_all_products(self):
         """Get /products/ all products must be returned"""
         products = Product.objects.all()
         serializer = ProductSerializer(products, many=True)
-        response = self.client.get(r('core:product-list'), format='json')
+        response = self.client.get(r('products:product-list'), format='json')
         self.assertEqual(response.data, serializer.data)
 
 
@@ -70,7 +70,7 @@ class ProductApiCreateTest(APITestCase):
                           'description': 'Printed Bandana',
                           'price': '18.55'}
         response = self.client.post(
-            r('core:product-list'), data_to_create, format='json')
+            r('products:product-list'), data_to_create, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         for key in data_to_create:
             self.assertEqual(data_to_create[key], response.data[key])
@@ -92,20 +92,20 @@ class ProductApiRetrieveTest(APITestCase):
     def test_valid_retrieve_product(self):
         """Get /products/1/ must return status 200"""
         response = self.client.get(
-            r('core:product-detail', pk=self.valid_pk), format='json')
+            r('products:product-detail', pk=self.valid_pk), format='json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     def test_invalid_retrieve_product(self):
         """Must return error 404 on retrieve invalid id."""
         response = self.client.get(
-            r('core:product-detail', pk=self.invalid_pk), format='json')
+            r('products:product-detail', pk=self.invalid_pk), format='json')
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
 
     def test_retrieve_product(self):
         """Ensure we can retrieve a product object by id."""
         serializer = ProductSerializer(self.product, many=False)
         response = self.client.get(
-            r('core:product-detail', pk=self.valid_pk), format='json')
+            r('products:product-detail', pk=self.valid_pk), format='json')
         self.assertEqual(response.data, serializer.data)
 
 
@@ -125,7 +125,7 @@ class ProductApiUpdateTest(APITestCase):
         """Put /products/1/ must return status 200"""
         data_to_update = ProductSerializer(self.product, many=False).data
         response = self.client.put(
-            r('core:product-detail', pk=self.valid_pk), data_to_update, format='json')
+            r('products:product-detail', pk=self.valid_pk), data_to_update, format='json')
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
@@ -133,7 +133,7 @@ class ProductApiUpdateTest(APITestCase):
         """Must return error 404 on update invalid id."""
         data_to_update = ProductSerializer(self.product, many=False).data
         response = self.client.put(
-            r('core:product-detail', pk=self.invalid_pk), data_to_update, format='json')
+            r('products:product-detail', pk=self.invalid_pk), data_to_update, format='json')
 
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
 
@@ -143,7 +143,7 @@ class ProductApiUpdateTest(APITestCase):
         data_to_update['description'] = 'Bandana very stylish'
 
         response = self.client.put(
-            r('core:product-detail', pk=self.valid_pk), data_to_update, format='json')
+            r('products:product-detail', pk=self.valid_pk), data_to_update, format='json')
 
         self.assertEqual(response.data, data_to_update)
 
@@ -162,13 +162,13 @@ class ProductApiDeleteTest(APITestCase):
     def test_valid_delete_product(self):
         """Ensure we can delete a product object by id."""
         response = self.client.delete(
-            r('core:product-detail', pk=self.valid_pk), format='json')
+            r('products:product-detail', pk=self.valid_pk), format='json')
 
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
 
     def test_invalid_delete_product(self):
         """Must return error 404 on delete invalid id."""
         response = self.client.delete(
-            r('core:product-detail', pk=self.invalid_pk), format='json')
+            r('products:product-detail', pk=self.invalid_pk), format='json')
 
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
