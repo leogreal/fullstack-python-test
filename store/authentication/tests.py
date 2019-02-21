@@ -54,3 +54,16 @@ class SignupApiGetTest(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         for key in data_to_create:
             self.assertEqual(data_to_create[key], response.data[key])
+
+
+class SigninApiGetTest(APITestCase):
+
+    def setUp(self):
+        self.client = APIClient()
+
+    def test_get(self):
+        """Get /signin/ must return status 403"""
+        response = self.client.get(
+            r('authentication:signin'), format='json')
+        self.assertEqual(response.status_code,
+                         status.HTTP_403_FORBIDDEN)

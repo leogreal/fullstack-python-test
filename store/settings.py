@@ -58,6 +58,13 @@ AUTHENTICATION_BACKENDS = [
     'store.authentication.backend.AuthBackend'
 ]
 
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    )
+}
+
 AUTH_USER_MODEL = 'authentication.Profile'
 
 ROOT_URLCONF = 'store.urls'
