@@ -40,16 +40,7 @@ class ProfileAuthentication(BasicAuthentication):
             raise exceptions.AuthenticationFailed(
                 'No credentials provided.')
 
-        credentials = {
-            get_user_model().USERNAME_FIELD: username,
-            'password': password
-        }
-
-        #user = authenticate(**credentials)
         user = Profile.objects.filter(username=username).first()
-
-        if user and user.check_password(password):
-            return user
 
         if user is None:
             raise exceptions.AuthenticationFailed(
@@ -58,6 +49,9 @@ class ProfileAuthentication(BasicAuthentication):
         if not user.is_active:
             raise exceptions.AuthenticationFailed(
                 'User inactive or deleted.')
+
+        if user.check_password(password):
+            return user
 
         return None
 
