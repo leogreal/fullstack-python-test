@@ -2,9 +2,11 @@ from datetime import datetime
 from django.test import TestCase
 from django.shortcuts import resolve_url as r
 
+import requests
 from rest_framework import status
 from rest_framework.test import APIClient
 from rest_framework.test import APITestCase
+from rest_framework.test import RequestsClient
 
 from store.authentication.models import Profile
 
@@ -54,28 +56,27 @@ class SigninApiGetTest(APITestCase):
 
     def setUp(self):
         self.obj = Profile.objects.create_user(
-            username='leonardo', password='secret', name='Leonardo Gregório', email='leogreal@gmail.com')
+            username='leonardo',
+            password='secret',
+            name='Leonardo Gregório',
+            email='leogreal@gmail.com')
 
-        self.client = APIClient()
+        self.client = RequestsClient()
 
     def test_get(self):
         """Get /signin/ must return status 405"""
-        response = self.client.get(
-            r('authentication:signin'), format='json')
+        response = self.client.get('http://127.0.0.1:8000/signin/')
         self.assertEqual(response.status_code,
                          status.HTTP_405_METHOD_NOT_ALLOWED)
 
     def test_check_user(self):
+        data_to_authenticate = {
+            "username": "leonardo",
+            "password": "secret"
+        }
 
         response = self.client.post(
-            r('authentication:signin'),
-            data=dict(username=self.obj.username, password="secret"),
-            content_type="application/json")
+            'http://127.0.0.1:8000/signin/',
+            data=data_to_authenticate)
 
-        print('==>', self.obj.username, response)
-
-        # self.assertTrue(self.client.login(
-        #    username=self.profile.username, password=self.profile.password))
-
-        # response = self.client.get(reverse('check_user'))
-        # self.assertEqual(response.status_code, httplib.OK)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
