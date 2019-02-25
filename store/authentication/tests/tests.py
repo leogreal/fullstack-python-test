@@ -10,7 +10,7 @@ from rest_framework.test import RequestsClient
 from store.authentication.models import Profile
 
 
-class SignupApiGetTest(APITestCase):
+class SignupApiTest(APITestCase):
 
     def setUp(self):
         self.client = APIClient()
