@@ -1,5 +1,4 @@
 from datetime import datetime
-from django.test import TestCase
 from django.shortcuts import resolve_url as r
 
 import requests
@@ -9,27 +8,6 @@ from rest_framework.test import APITestCase
 from rest_framework.test import RequestsClient
 
 from store.authentication.models import Profile
-
-
-class ProfileModelTest(TestCase):
-
-    def setUp(self):
-        self.obj = Profile.objects.create_user(
-            username='leonardo',
-            password='secret',
-            name='Leonardo Gregório',
-            email='leogreal@gmail.com')
-
-    def test_create(self):
-        """Ensure we can create a new profile"""
-        self.assertTrue(Profile.objects.exists())
-
-    def test_creation_date(self):
-        """Profile must have an auto creation_date attr."""
-        self.assertIsInstance(self.obj.creation_date, datetime)
-
-    def test_str(self):
-        self.assertEqual('Leonardo', str(self.obj))
 
 
 class SignupApiGetTest(APITestCase):
