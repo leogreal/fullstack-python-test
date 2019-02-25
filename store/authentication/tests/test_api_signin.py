@@ -1,5 +1,4 @@
 from datetime import datetime
-from django.shortcuts import resolve_url as r
 
 import requests
 from rest_framework import status
