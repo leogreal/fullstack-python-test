@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'test_without_migrations',
     'rest_framework',
     'store.authentication',
+    'store.orders',
     'store.products',
 ]
 
