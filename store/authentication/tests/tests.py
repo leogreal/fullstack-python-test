@@ -3,14 +3,13 @@ from django.shortcuts import resolve_url as r
 
 import requests
 from rest_framework import status
-from rest_framework.test import APIClient
 from rest_framework.test import APITestCase
 from rest_framework.test import RequestsClient
 
 from store.authentication.models import Profile
 
 
-class SigninApiGetTest(APITestCase):
+class SigninApiTest(APITestCase):
 
     def setUp(self):
         self.obj = Profile.objects.create_user(
