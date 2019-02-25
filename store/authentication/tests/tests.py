@@ -15,7 +15,10 @@ class ProfileModelTest(TestCase):
 
     def setUp(self):
         self.obj = Profile.objects.create_user(
-            username='leonardo', password='secret', name='Leonardo Gregório', email='leogreal@gmail.com')
+            username='leonardo',
+            password='secret',
+            name='Leonardo Gregório',
+            email='leogreal@gmail.com')
 
     def test_create(self):
         """Ensure we can create a new profile"""
@@ -69,7 +72,8 @@ class SigninApiGetTest(APITestCase):
         self.assertEqual(response.status_code,
                          status.HTTP_405_METHOD_NOT_ALLOWED)
 
-    def test_check_user(self):
+    def test_authenticate_user(self):
+        """Ensure we can authenticate a user."""
         data_to_authenticate = {
             "username": "leonardo",
             "password": "secret"
