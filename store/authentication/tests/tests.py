@@ -10,29 +10,6 @@ from rest_framework.test import RequestsClient
 from store.authentication.models import Profile
 
 
-class SignupApiTest(APITestCase):
-
-    def setUp(self):
-        self.client = APIClient()
-
-    def test_get(self):
-        """Get /signup/ must return status 405"""
-        response = self.client.get(
-            r('authentication:signup'), format='json')
-        self.assertEqual(response.status_code,
-                         status.HTTP_405_METHOD_NOT_ALLOWED)
-
-    def test_create_profile(self):
-        """Ensure we can create a new profile object."""
-        data_to_create = {'username': 'leonardo',
-                          'name': 'Leonardo Gregório',
-                          'email': 'leogreal@gmail.com',
-                          'password': 'secret'}
-        response = self.client.post(
-            r('authentication:signup'), data_to_create, format='json')
-        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
-
-
 class SigninApiGetTest(APITestCase):
 
     def setUp(self):
