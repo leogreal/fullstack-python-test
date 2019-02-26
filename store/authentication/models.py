@@ -9,7 +9,8 @@ class Profile(AbstractBaseUser, PermissionsMixin):
 
     username = models.CharField(
         'user name', max_length=50, blank=True, unique=True)
-    name = models.CharField('name', max_length=50, blank=True)
+    name = models.CharField('name', max_length=50, blank=False)
+    full_display_name = models.CharField('name', max_length=50, blank=False)
     email = models.EmailField('email address', unique=True)
     creation_date = models.DateTimeField(auto_now_add=True)
     is_active = models.BooleanField('active', default=True)

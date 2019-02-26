@@ -23,7 +23,8 @@ class SignupApiTest(APITestCase):
     def test_create_profile(self):
         """Ensure we can create a new profile object."""
         data_to_create = {'username': 'leonardo',
-                          'name': 'Leonardo Gregório',
+                          'name': 'Leonardo',
+                          'full_display_name': 'Leonardo Gregório',
                           'email': 'leogreal@gmail.com',
                           'password': 'secret'}
         response = self.client.post(

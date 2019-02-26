@@ -10,7 +10,8 @@ class ProfileModelTest(TestCase):
         self.obj = Profile.objects.create_user(
             username='leonardo',
             password='secret',
-            name='Leonardo Gregório',
+            name='Leonardo',
+            full_display_name='Leonardo Gregório',
             email='leogreal@gmail.com')
 
     def test_create(self):
